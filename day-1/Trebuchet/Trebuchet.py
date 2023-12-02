@@ -25,7 +25,9 @@ def lineProcessor(line: str) -> int:
     input: string
     output: int
     '''
+    original = line
     digits = {'1', '2', '3', '4', '5', '6', '7', '8', '9', '0'}
+    postRep = line
     los = len(line) # LOS = length of string
     firstDig = 'x'
     lastDig  = 'x'
@@ -39,7 +41,55 @@ def lineProcessor(line: str) -> int:
             break
     return int(firstDig + lastDig)
 
-def loadInput(path: str) -> int:
+def digitStrReplacement(line: str) -> int:
+    digits = {
+        'one'   : '1',
+        'two'   : '2',
+        'three' : '3', 
+        'four'  : '4',
+        'five'  : '5',
+        'six'   : '6',
+        'seven' : '7',
+        'eight' : '8',
+        'nine'  : '9',
+    }
+    firstDig = '0'
+    lastDig = '0'
+    # Starting at the front
+    lineLen = len(line)
+    window = ""
+    for i in range(0, lineLen):
+        window += line[i]
+        for key, value in digits.items():
+            if key in window:
+                firstDig = value
+                break
+            elif value in window:
+                firstDig = value
+                break
+        if firstDig != '0':
+            break
+        if len(window) > 5:
+            window = window[1:6]
+
+    # Now doing the back
+    window = ""
+    for i in range(1, lineLen+1):
+        window = line[lineLen-i] + window
+        for key, value in digits.items():
+            if key in window:
+                lastDig = value
+                break
+            elif value in window:
+                lastDig = value
+                break
+        if lastDig != '0':
+            break
+        if len(window) > 4:
+            window = window[:4]
+    return int(firstDig + lastDig)
+
+def loadInput(path: str, allowStrRep: bool = False) -> int:
     '''
     desc: Take a file of strings seperated by new lines to return the sum of the combination of the first and last digits of each line
     input: str representing a file path
@@ -54,7 +104,7 @@ def loadInput(path: str) -> int:
         print(f"Begining to read in file: {path}")
         with open(path, 'r') as f:
             for line in f:
-                digToSum.append(lineProcessor(line))
+                digToSum.append(digitStrReplacement(line) if allowStrRep else lineProcessor(line))
                 lenOfFile += 1
     except Exception as e:
         print(f'Error opening {path} due to {e}')
@@ -66,4 +116,5 @@ def loadInput(path: str) -> int:
         return result
     else:
         print('Error no data sum...')
+
 

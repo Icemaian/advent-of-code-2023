@@ -1,15 +1,24 @@
-Trebuchet:	
-	problem statement: Each line contains a calibration value, the value is found by combining the first digit and the last (not addition). After every digit is found sum the values
+Trebuchet part 1:	
+	Problem statement: Each line contains a calibration value, the value is found by combining the first digit and the last (not addition). After every digit is found sum the values
 	Approach: 
 		1: Define file path, result variable, and performance variables
-		2: Read in file, using chunks to prevent overflow
-		3: Loop through each line and keep track of index for performance metric and traceability
-		4: for each line we want to
+		2: Loop through each line and keep track of index for shifting the window
+		3: for each line we want to
 			a: grab the length of the string
 			b: Start from 0 index and loop through chars till we find a digit
 			c: Start at the end of the index and reverse through the chars till we find a digit
 			d: finally combine the two digits as chars and append to the result array as type int
-		5: For summing the array:
+		4: For summing the array:
 			a: If the array is greater than two split and call the function again for each half
 			b: Else sum the two digit and return the sum
+	
+Trebuchet part 2:
+	Problem statement: Inside the input there is actually english strings in the text that represent valid digits, limited to 0-9
+	Approach:
+		1: Define a function that can take in a string and find and replace the first valid string and the last
+			a: we'll use a dict that we'll loop through for determining if our window has valid input
+			b: our window will start at one char long and grow to at max 5
+			c: once a valid int or str representation of int is found in the window break and return it. 
+
+
 
