@@ -1,4 +1,4 @@
-CubeConundrum:
+CubeConundrum part 1:
 	Problem statement: there is a bag of colored cubes, several times per game the elf will pull out a handful and show them, the elf will run through several games.
 	From this when given the max amount of each color type determine what games where possible then add the id's for the result
 	Approach:
@@ -8,3 +8,8 @@ CubeConundrum:
 				- a list of dict where each dict represents a round
 				- a function that returns True if the game is possible or False if not
 		2: Once loaded in we can itterate through the list and if the isPossible function returns True add the key to our result int
+
+CubeConundrum part 2:
+	Problemt statment: Given we know the maximum for each game we also know know the minimum that would have made the game impossible. What is the power of each game added together?
+	Approach:
+		1: since we already capture this we just need to create a function that can loop through and calculate it
