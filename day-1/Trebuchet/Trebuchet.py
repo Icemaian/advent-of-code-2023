@@ -1,18 +1,23 @@
-import os
-
-def recArrSum(arr: array('I'), len: int) -> int:
+from array import array
+def recArrSum(arr: array('I')) -> int:
     '''
     desc: Meant to recursively sum an array of ints
     input: array of unsigned integers
     output: unsigned integer representing the sum of the array
     '''
-    if len > 2:
-        halfLen = len/2
-        leftSum  = recArrSum(arr[:halfLen], halfLen)
-        rightSum = recArrSum(arr[halfLen:], halfLen)
-        return lefSum + rightSum
+    arrLen = len(arr)
+    if arrLen == 1:
+        return arr[0]
+    elif arrLen > 2:
+        halfLen = arrLen//2
+        leftSum  = recArrSum(arr[:halfLen])
+        rightSum = recArrSum(arr[halfLen:])
+        return leftSum + rightSum
     else:
-        return arr[0] + arr[1]
+        result = 0
+        for i in range(0,arrLen):
+            result += arr[i]
+        return result
 
 def lineProcessor(line: str) -> int:
     '''
@@ -24,12 +29,14 @@ def lineProcessor(line: str) -> int:
     los = len(line) # LOS = length of string
     firstDig = 'x'
     lastDig  = 'x'
-    for char in str:
-        if char in d
+    for char in line:
+        if char in digits:
             firstDig = char
+            break
     for i in range(0, los):
-        if str[los-i] in digits:
-            lastDig = str[los-i]
+        if line[los-i-1] in digits:
+            lastDig = line[los-i-1]
+            break
     return int(firstDig + lastDig)
 
 def loadInput(path: str) -> int:
@@ -44,16 +51,19 @@ def loadInput(path: str) -> int:
     digToSum = array('I')
     lenOfFile = 0
     try:
-        print(f"Begining to read in file: {path}"
-        with os.open(path, 'r') as f:
-            digToSum.append(lineProcessor(f.read()))
-            lenOfFile += 1
+        print(f"Begining to read in file: {path}")
+        with open(path, 'r') as f:
+            for line in f:
+                digToSum.append(lineProcessor(line))
+                lenOfFile += 1
     except Exception as e:
-        print(f'Error opening {path} do to {e}')
-    os.close(path)
+        print(f'Error opening {path} due to {e}')
+        return
     if digToSum:
         print(f"Starting to sum all {lenOfFile} from {path}")
-        return recArrSum(digToSum)
+        result = recArrSum(digToSum)
+        print(f'Result is = {result}')
+        return result
     else:
         print('Error no data sum...')
 
