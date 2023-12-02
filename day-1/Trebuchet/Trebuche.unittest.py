@@ -33,7 +33,8 @@ class TrebuchetUnitTest(unittest.TestCase):
 
     def test_realPuzzel2(self):
         test_input = "trebuchet.input"
-        self.assertIsNotNone(loadInput(test_input, True), msg="Final Test Using Puzzel Data")
+        test_answer = 54578
+        self.assertEqual(test_answer, loadInput(test_input, True), msg="Final Test Using Puzzel Data")
 
 if __name__ == '__main__':
     unittest.main()
