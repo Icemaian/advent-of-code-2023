@@ -1,0 +1,10 @@
+CubeConundrum:
+	Problem statement: there is a bag of colored cubes, several times per game the elf will pull out a handful and show them, the elf will run through several games.
+	From this when given the max amount of each color type determine what games where possible then add the id's for the result
+	Approach:
+		1: First we need to parse each line and lets save it to a dict of game obj using the id number as the key and the obj as the value.
+			a: the game obj should contain
+				- An id
+				- a list of dict where each dict represents a round
+				- a function that returns True if the game is possible or False if not
+		2: Once loaded in we can itterate through the list and if the isPossible function returns True add the key to our result int
