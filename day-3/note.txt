@@ -1,0 +1,12 @@
+Gear Raitos:
+	Problem statement:
+		given a sheet containing digits and symbols determine the sum of digits that have a symbol within one step away. That step can be diagonal, above, below, or beside. Empty spaces are represented by periods and do not count as symbols
+	Approach:
+		1: First we'll read in the first line and save it to an list called currLine
+		2: Then we'll read in the next line and save it to an list called nextLine
+		3: With both in memory we'll being processing the data by
+			a: reading each char, if its a digit save it to a string called canidate.
+			b: once we hit a period we want to check if a symbol is above or below. 
+				- For below we'll use the index of the current point, taking into account to catch we dont go beyond the bounds of the list
+				- For above we'll use the same process
+			c: after we've finished a line we'll save the currLine to the list prevLine, save currLine to nextLine, and read in the nextLine from the input file
