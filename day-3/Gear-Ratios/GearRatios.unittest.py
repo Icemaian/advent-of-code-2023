@@ -1,5 +1,4 @@
-import unittest
-from GearRatios import listContainsSymbol
+import unittest                                                                                     from GearRatios import listContainsSymbol
 
 class filenameUnitTest(unittest.TestCase):
     def test_invalidChars(self):
@@ -7,7 +6,6 @@ class filenameUnitTest(unittest.TestCase):
         test_true_input = ['.', '.', '#', '.']
         self.assertEqual(False, listContainsSymbol(test_false_input))
         self.assertEqual(True, listContainsSymbol(test_true_input))
-
 
 if __name__ == '__main__':
     unittest.main()
