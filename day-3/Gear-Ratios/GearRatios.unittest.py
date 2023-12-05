@@ -20,6 +20,7 @@ class filenameUnitTest(unittest.TestCase):
 
     def test_puzzel(self):
         test_input = "GearRatios.input"
-        self.assertIsNotNone(openData(test_input))
+        test_answer = 530849
+        self.assertEqual(test_answer,openData(test_input))
 if __name__ == '__main__':
     unittest.main()
