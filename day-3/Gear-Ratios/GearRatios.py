@@ -43,44 +43,52 @@ def openData(fPath: str) -> int:
                 currLine = list(line)
             else:
                 nextLine = list(line)
+                old = totalGear
                 total += processLine(currLine, nextLine, prevLine)
-                #totalGear += findGear(currLine, nextLine, prevLine)
+                totalGear += findGear(currLine, nextLine, prevLine)
+                print(f'Curr line: {lineIndex-1} with old total: {old} and current total {totalGear}')
+                print('--------------------')
                 prevLine = currLine
                 currLine = nextLine
-    #totalGear += findGear(currLine, nextLine, prevLine)
+    totalGear += findGear(currLine, nextLine, prevLine)
+    print(f'Final line: {lineIndex}, with old total: and final total {totalGear}')
     total += processLine(currLine, [], prevLine) #Process last line
     print(f'Total: {total}, total Gear {totalGear}')
-    return total 
+    return (total, totalGear) 
 
 
 def findGear(currLine: list, nextLine: list = [], prevLine: list = []) -> int:
     result = 0
     for index, char in enumerate(currLine):
         if char == "*":
-            print(f"Potential Gear found at {index-1}")
-            startPoint = index-4 if index-4 >= 0 else 0
-            endPoint = index+3
+            startPoint = index-3 if index-3 >= 0 else 0
+            endPoint = index+4
             canidates = []
-            for line in [currLine, nextLine, prevLine]:
-                canidate = gearValue(line, index-1)
-                print(canidate)
-                #`canidates.append(*canidate) if len(canidate) > 0 else None
+            adjIndex = currLine[startPoint:endPoint].index('*')
+            for line in [currLine[startPoint:endPoint], nextLine[startPoint:endPoint], prevLine[startPoint:endPoint]]:
+                #print(f'Current line {line}, start point: {startPoint}, end point: {endPoint}')
+                canidates.extend(gearValue(line, adjIndex))
             if len(canidates) == 2:
+                print(f"Adding {canidates[0]}*{canidates[1]} to {result} from {canidates}")
                 result += (canidates[0] * canidates[1])
     return result
 
 def gearValue(line: list, index: int) -> int:
     result = []
-    canidate = ""
+    canidate = "" 
+    canidateRange = []
     for idx, char in enumerate(line):
-        readyToValidate = (not char.isnumeric() or idx == len(line)) # check if we've reached the end of the digit or line
+        readyToValidate = (not char.isnumeric() or idx == len(line)-1) # check if we've reached the end of the digit or line
         if char.isnumeric():
             canidate += char
+            canidateRange.append(idx)
         if canidate and readyToValidate:
-            if index >= idx-len(canidate) and index <= idx+1:
+            #print(f'Currently validating canidate: {canidate} if {index} is {[*canidateRange, canidateRange[0]-1, canidateRange[len(canidateRange)-1]+1]}')
+            if index in [*canidateRange, canidateRange[0]-1, canidateRange[len(canidateRange)-1]+1]:
+                #print(f'canidate {canidate} is valid')
                 result.append(int(canidate))
-            else:
-                canidate = ""
+            canidate = ""
+            canidateRange = []
     return result
         
 

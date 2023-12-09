@@ -1,4 +1,4 @@
-Gear Raitos:
+Gear Ratios:
 	Problem statement:
 		given a sheet containing digits and symbols determine the sum of digits that have a symbol within one step away. That step can be diagonal, above, below, or beside. Empty spaces are represented by periods and do not count as symbols
 	Approach:
@@ -10,3 +10,12 @@ Gear Raitos:
 				- For below we'll use the index of the current point, taking into account to catch we dont go beyond the bounds of the list
 				- For above we'll use the same process
 			c: after we've finished a line we'll save the currLine to the list prevLine, save currLine to nextLine, and read in the nextLine from the input file
+
+Gear Ratios part 2:
+	Problem State: 
+		given the same sheet we now need to add the multiplicity of exactly two numbers that are within direct contact with a *.
+	Approach: 
+		1: Taking the same window approach we will now search for a * icon instead of a digit. some caveats though...
+			a: It specifies excatly two part numbers so if only one is present we don't count it
+			b: It does not specify if part numbers can be re-used or not, for now I am assuming they can
+		2: once we identify the multiplicity we'll add it to a new totalGear value
