@@ -30,7 +30,7 @@ def processLine(currLine: list, nextLine: list = [], prevLine: list = []) -> int
 
 def openData(fPath: str) -> int:
     total = 0
-    totalGear = 0
+    totalGear = []
     currLine = []
     nextLine = []
     prevLine = []
@@ -45,16 +45,17 @@ def openData(fPath: str) -> int:
                 nextLine = list(line)
                 old = totalGear
                 total += processLine(currLine, nextLine, prevLine)
-                totalGear += findGear(currLine, nextLine, prevLine)
-                print(f'Curr line: {lineIndex-1} with old total: {old} and current total {totalGear}')
+                result = findGear(currLine, nextLine, prevLine)
+                totalGear.append(result)
+                print(f'Curr line: {lineIndex-1} with result {result}')
                 print('--------------------')
                 prevLine = currLine
                 currLine = nextLine
-    totalGear += findGear(currLine, nextLine, prevLine)
-    print(f'Final line: {lineIndex}, with old total: and final total {totalGear}')
+    totalGear.append(findGear(currLine, nextLine, prevLine))
+    #print(f'Final line: {lineIndex}, with old total: and final total {totalGear}')
     total += processLine(currLine, [], prevLine) #Process last line
-    print(f'Total: {total}, total Gear {totalGear}')
-    return (total, totalGear) 
+    print(f'Total: {total}, total Gear {sum(totalGear)}')
+    return (total, sum(totalGear)) 
 
 
 def findGear(currLine: list, nextLine: list = [], prevLine: list = []) -> int:
@@ -64,12 +65,12 @@ def findGear(currLine: list, nextLine: list = [], prevLine: list = []) -> int:
             startPoint = index-3 if index-3 >= 0 else 0
             endPoint = index+4
             canidates = []
-            adjIndex = currLine[startPoint:endPoint].index('*')
+            adjIndex = 3 #currLine[startPoint:endPoint].index('*')
             for line in [currLine[startPoint:endPoint], nextLine[startPoint:endPoint], prevLine[startPoint:endPoint]]:
-                #print(f'Current line {line}, start point: {startPoint}, end point: {endPoint}')
+                print(f'Current line {line}, start point: {startPoint}, end point: {endPoint}')
                 canidates.extend(gearValue(line, adjIndex))
             if len(canidates) == 2:
-                print(f"Adding {canidates[0]}*{canidates[1]} to {result} from {canidates}")
+                print(f"{canidates[0]},{canidates[1]}")
                 result += (canidates[0] * canidates[1])
     return result
 
@@ -83,7 +84,7 @@ def gearValue(line: list, index: int) -> int:
             canidate += char
             canidateRange.append(idx)
         if canidate and readyToValidate:
-            #print(f'Currently validating canidate: {canidate} if {index} is {[*canidateRange, canidateRange[0]-1, canidateRange[len(canidateRange)-1]+1]}')
+            print(f'Currently validating canidate: {canidate} if {index} is {[*canidateRange, canidateRange[0]-1, canidateRange[len(canidateRange)-1]+1]}')
             if index in [*canidateRange, canidateRange[0]-1, canidateRange[len(canidateRange)-1]+1]:
                 #print(f'canidate {canidate} is valid')
                 result.append(int(canidate))

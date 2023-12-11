@@ -22,7 +22,7 @@ class filenameUnitTest(unittest.TestCase):
     def test_puzzel(self):
         test_input = "GearRatios.input"
         test_answer = 530849
-        self.assertEqual(test_answer,openData(test_input))
+        self.assertEqual(test_answer,openData(test_input)[0])
 
     def test_gearValue(self):
         test_input = (['7','7','.','1','1','4','.'], 2)
@@ -30,15 +30,21 @@ class filenameUnitTest(unittest.TestCase):
         self.assertEqual(test_answer, gearValue(test_input[0], test_input[1]))
     
     def test_findGear(self):
-        test_currLine = list('...........42....647.............776.........9......601....560.....696....267..................%....102...........250............289.33*....')
-        test_nextLine = list('......................667....793*......=521../.....................+........*......#....81.............*996.........*.............*.....713.')
-        test_prevLine = list('....387......*..........498*............519........=..........$.......................600....373..........746.497..........#.248.........512')
-        test_answer = 23529
+        test_currLine = list('...........*...................638..72...........+......367........802.........&..............=....*..*................-.../....401.773.....')
+        test_nextLine = list('........535...................*............4.29..........*.....784*....526........................141.342.189........630..958...............')
+        test_prevLine = list('...........2.235*..........*..........*318.......317............................383.567..705.923..716.409.68.......................*........')
+        test_answer = 241904 
         self.assertEqual(test_answer, findGear(test_currLine, test_nextLine, test_prevLine))
     
     def test_openData(self):
         test_input = 'test.input'
         test_answer = 467835
         self.assertEqual(test_answer, openData(test_input)[1])
+
+    def test_finalPuzzel(self):
+        test_input = 'GearRatios.input'
+        test_answer = 84900879
+        self.assertEqual(test_answer, openData(test_input)[1])
+
 if __name__ == '__main__':
     unittest.main()
