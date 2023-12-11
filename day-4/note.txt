@@ -1,0 +1,12 @@
+Scratch Cards:
+	Problem Statement:
+		Given a list of scratch cards determine how many winning numbers you have, the first match is work one point and each subseuent match doubles the point.
+	Approach:
+		Pretty straight forward I am going create a set of winning numbers and itterate through my numbers and adjust the final value as I go through and add each line result
+Scratch Cards Part 2:
+	Problem Statement:
+		The points are a lie, the number of matches you gets wins you a copy of your next x cards. So on card one if you have four matching numbers you win a copy of card 2, 3, 4, and 5. If in card 2 you have 2 matching numbers instead of winning just one copy of 3 and 4 you win two copies. The goal is to determine how many cards you end up with, copies and all.
+	Approach:
+		1: Editing the readCardStack function lets store the results into a dict of dicts
+		2: We'll save the previous multiple and apply it to the current card and pass it along
+		
