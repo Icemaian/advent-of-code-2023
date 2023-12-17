@@ -1,0 +1,33 @@
+FoodAlmanac:
+	Problem Statement:
+		We are given a set of key values followed by maps in the format source-to-dest map: with the actual mapping on the next line with a blank line seperating maps. Each line of a map falls into the same pattern of three digits seperate by a space. The first digit is the dest range starting value, the second is the source dest range starting value, the third and final number is the range. Any number that doesn't fall into the source range has a one to one exchange.
+	Example:
+		source-to-dest map:
+		50 98 2
+		52 50 48
+
+		The first line would have:
+			Range		 = 2
+			source Range = [98, 99]
+			Dest   Range = [50, 51]
+
+		The second line would have:
+			Range		 = 48
+			Source Range = [50, 51, 52, ..., 95, 96, 97]
+			Dest Range   = [52, 53, 54, ..., 97, 98, 99]
+
+		this would mean a source number 99 would now equate to 51 and 95 would equate to 97
+
+	Approach:
+		So this one will be tough but I am going to build a map class
+			1: It will take in:
+				a: source string id
+				b: destination string id
+				c: a list of lists the mapping ranges
+			2: It will have a function to build a mapping dict taking in the list of lists as params
+			3: It will have a function that takes in a digit and return its new equivelent
+		Then I will build an almanac class
+			1: It will have a function that adds to a map dict using the source Id's as the key's and map class as the value
+			2: It will have a function that takes in a source id string, a destination string id, and a list of source values. It will navigate the dict map and return the final numbers
+			3: it will have a function to generate an alamanac from a text file matching the lay out in the example
+
