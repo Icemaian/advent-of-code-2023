@@ -30,4 +30,8 @@ FoodAlmanac:
 			1: It will have a function that adds to a map dict using the source Id's as the key's and map class as the value
 			2: It will have a function that takes in a source id string, a destination string id, and a list of source values. It will navigate the dict map and return the final numbers
 			3: it will have a function to generate an alamanac from a text file matching the lay out in the example
-
+FoodAlmanac Part 2:
+	Problem Statement:
+		So the seeds are actually pairs, the first digit is the start of the range and the second is the length. this creates a massive list of seeds that cannot be held in memory easily
+	Approach:
+		So given this is a once processed task I am not going to worry about speed at this time. I will add a function that will handle running it in a seed range format and process each digit individually. I will also add some tqdm bars to help show progress and ensure we haven't stalled

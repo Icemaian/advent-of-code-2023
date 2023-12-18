@@ -18,12 +18,15 @@ class TestConversionMap(unittest.TestCase):
         test_input = test_alm.mapValues()
         self.assertEqual(test_answer, test_alm.findMin(test_input))
 
-    def test_findMin(self):
+    def test_puzzelPart1(self):
         test_alm = Almanac('FoodAlmanac.input')
-        test_answer = 35
+        test_answer = 51580674
         test_input = test_alm.mapValues()
-        self.assertEqual([], test_alm.mapValues())
         self.assertEqual(test_answer, test_alm.findMin(test_input))
+
+    def test_puzzelPart2(self):
+        test_alm = Almanac('FoodAlmanac.input', True)
+        
 
 if __name__ == '__main__':
     unittest.main()
