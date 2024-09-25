@@ -32,3 +32,12 @@ class race():
         for item in self.margin_of_error:
             margin *= item
         return margin
+
+    def combine_inputs(self, inputs: [(int, int)]):
+        total_time = ""
+        total_distance = ""
+        for time_input, dist_input in inputs:
+            total_time += str(time_input)
+            total_distance += str(dist_input)
+        return (total_time, total_distance)
+

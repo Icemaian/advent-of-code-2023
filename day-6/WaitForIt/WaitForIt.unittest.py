@@ -27,5 +27,11 @@ class WaitForItUnitTest(unittest.TestCase):
             test_race.determine_wins(*race_input)
         self.assertEqual(32076, test_race.get_margin_of_error())
 
+    def test_second_puzzle_input(self):
+        test_race = race()
+        self.assertEqual(('71530', '940200'), test_race.combine_inputs(test_race.read_test_input("test.input")))
+        inputs = test_race.combine_inputs(test_race.read_test_input("FirstPuzzleInput.input"))
+        self.assertEqual(34278221, test_race.determine_wins(int(inputs[0]), int(inputs[1])))
+
 if __name__ == '__main__':
     unittest.main()
