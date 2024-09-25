@@ -1,0 +1,6 @@
+WaitForIt:
+	Problem Statement:
+		given a list of races with the max time to complete (TTC) and the current best range. Our toy boat has a button to charge velocity where each milisecond held increases the velocity by 1 milimeter per second. So a charge held for 5 seconds will give the boat a velocity 5 milimeters per second. Our goal is to determine how many ways can we achieve a new record per race and multiply each total number of potential wins of each race
+	Approach:
+		1: I need to read in the text input but the races properties are on each line and so each index represent a new race. I will create a class that takes those properties in as input. This class will have a function that can determine how many ways can we beat the record.
+		2: we will need to make a function that can read in each line save it to a dict where the key is the index with properties for each
